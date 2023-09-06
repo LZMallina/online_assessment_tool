@@ -24,7 +24,7 @@
                     {% csrf_token %}
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Username" name="username" >
-                        <input type="password" class="form-control" placeholder="Username" name="psw" >
+                        <input type="password" class="form-control" placeholder="Password" name="psw" >
                         <button class="btn btn-primary" type="submit">Login</button>
                         <a class="btn btn-link" href="{% url 'onlinecourse:registration' %}">Sign Up</a>
                     </div>
@@ -60,7 +60,7 @@
             <div class="form-group">
                 {% for choice in question.choice_set.all %}
                 <div class="form-check">
-                    {% if choice in submitted_choices andd choice.is_correct%}
+                    {% if choice in submitted_choices and choice.is_correct %}
                     <label class="form-check-label text-success">
                         Correct answer: {{choice.text}}
                     </label>
@@ -68,15 +68,15 @@
                     <label class="form-check-label text-danger">
                         Incorrect answer: {{choice.text}}
                     </label>
-                    {% elif choice not in submitted_choices and choice.is_correct%}
+                    {% elif choice not in submitted_choices and choice.is_correct %}
                     <label class="form-check-label text-warning">
                         Not selected: {{choice.text}}
                     </label>
                     {% else %}
-                    <label class="form-check-label text-success">
+                    <label class="form-check-label text-dark">
                         {{choice.text}}
                     </label>
-                    {% endif%}
+                    {% endif %}
                 </div>
                 {% endfor %}
             </div>

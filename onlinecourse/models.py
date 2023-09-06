@@ -105,17 +105,17 @@ class Question(models.Model):
     # Foreign key to lesson
     course = models.ForeignKey(Course, null =True, on_delete=models.CASCADE)
     # question text
-    text = models.CharField(max_length=200, default="questions")
+    text = models.CharField(max_length=200, default="question")
     # question grade/mark
     grade = models.IntegerField(default = 0)
     # <HINT> A sample model method to calculate if learner get the score of the question
-    def is_get_score(self, selected_ids):
-        all_answers = self.choice_set.filter(is_correct=True).count()
-        selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
-        if all_answers == selected_correct:
-            return True
-        else:
-            return False
+    def is_get_score(self, selected):
+       all_answers = set(self.choice_set.all())
+       correct_answers = set(self.choice_set.filter(is_correct=True))
+       if correct_answers == all_answers.intersection(selected):
+           return True
+       else:
+           return False
 
 
 #  <HINT> Create a Choice Model with:
@@ -128,7 +128,7 @@ class Choice(models.Model):
 # Foreign key to Question
     question = models.ForeignKey(Question, null =True, on_delete=models.CASCADE)
     # Choice content
-    text = models.CharField(max_length=200, default="choices")
+    text = models.CharField(max_length=200, default="choice")
     is_correct = models.BooleanField(default=False)
 
 # <HINT> The submission model
