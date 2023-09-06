@@ -7,3 +7,14 @@ For your reference, we have prepared the ER diagram design for the new assesemen
 
 * python3 -m pip install -U -r requirements.txt
 
+## Commands
+
+$ python3 manage.py makemigrations onlinecourse
+
+$ python3 manage.py migrate
+
+$ python3 manage.py createsuperuser
+
+$ python3 manage.py runserver
+
+
